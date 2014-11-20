@@ -1,7 +1,7 @@
 function  peaks = findPeaks4( Amp, MAX_PEAK, EPS_PEAK, SSF )
 
-%   This version modified from findPeaks.m by P. Moller-Nielson 
-%   28.3.03, pm-n. ( see http://www.daimi.au.dk/~pmn/sound/ )
+#   This version modified from findPeaks.m by P. Moller-Nielson 
+#   28.3.03, pm-n. ( see http://www.daimi.au.dk/~pmn/sound/ )
 
 SPECTRUM_SIZE=length(Amp);
 peakAmp = ( Amp(3:SPECTRUM_SIZE-1) > Amp(2:SPECTRUM_SIZE-2) ) .* ...
