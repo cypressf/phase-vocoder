@@ -1,6 +1,5 @@
 import numpy
 
-
 def find_peaks4(amps, max_peak, eps_peak):
     spectrum_size = len(amps)
     peak_amplitude = numpy.greater(amps[3:spectrum_size - 1], amps[2:spectrum_size - 2]) * \
