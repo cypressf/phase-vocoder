@@ -7,6 +7,9 @@ SPECTRUM_SIZE=length(Amp);
 peakAmp = ( Amp(3:SPECTRUM_SIZE-1) > Amp(2:SPECTRUM_SIZE-2) ) .* ...
           ( Amp(3:SPECTRUM_SIZE-1) > Amp(4:SPECTRUM_SIZE) ) .* ...
           Amp(3:SPECTRUM_SIZE-1);
+      
+%plot(peakAmp);
+
 peakPos = zeros( MAX_PEAK, 1);
 
 maxAmp = max( peakAmp );
@@ -22,6 +25,7 @@ for p = 1 : MAX_PEAK
 end;
 
 peakPos = sort( peakPos );
+%plot(peakPos);
 peaks = zeros( nPeaks, 3 );
 
 last_b = 1;
