@@ -29,11 +29,11 @@ def find_peaks4(amps, max_peak, eps_peak):
         if p == n_peaks:
             last_b = spectrum_size
         else:
-            next_b = peak_pos[max_peak - n_peaks + p + 1]
+            next_b = peak_pos[max_peak - n_peaks + p]
             rel_min = numpy.argmin(amps[b:next_b])
             last_b = b + rel_min - 1
 
         peaks[p, 0] = first_b
         peaks[p, 1] = b
         peaks[p, 2] = last_b
-        return peaks
+    return peaks
