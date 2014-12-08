@@ -20,7 +20,7 @@ def find_peaks4(amps, max_peak, eps_peak):
         n_peaks = p
 
     peak_pos = numpy.sort(peak_pos)
-    peaks = numpy.zeros([n_peaks, 3])
+    peaks = numpy.zeros([n_peaks, 3], dtype="uint32")
 
     last_b = 1
     for p in range(n_peaks):
