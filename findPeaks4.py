@@ -1,39 +1,42 @@
 import numpy
 
 
-def find_peaks4(amps, max_peak, eps_peak):
-    spectrum_size = len(amps)
-    greater_than_previous = numpy.greater(amps[3:spectrum_size - 1], amps[2:spectrum_size - 2])
-    greater_than_next = numpy.greater(amps[3:spectrum_size - 1], amps[4:spectrum_size])
-    peak_amplitudes = greater_than_previous * greater_than_next * amps[3:spectrum_size - 1]
+def find_peaks4(spectrum, max_peaks, eps_peak):
 
-    peak_position = numpy.transpose(numpy.zeros(max_peak))
+    # find the peaks in the spectrum
+    greater_than_previous = numpy.greater(spectrum[3:-1], spectrum[2:-2])
+    greater_than_next = numpy.greater(spectrum[3:-1], spectrum[4:])
+    peak_amplitudes = greater_than_previous * greater_than_next * spectrum[3:-1]
+
+    # identify the 50 biggest peaks, and save their indices in peak_positions
+    peak_positions = numpy.transpose(numpy.zeros(max_peaks))
     max_amp = max(peak_amplitudes)
     n_peaks = 0
-    for p in range(max_peak):
+    for i in range(max_peaks):
         b = numpy.argmax(peak_amplitudes)
         m = peak_amplitudes[b]
         if m <= (eps_peak * max_amp):
             break
-        peak_position[p] = b + 2
+        peak_positions[i] = b + 2
         peak_amplitudes[b] = 0
-        n_peaks = p
+        n_peaks = i
+    peak_positions = numpy.sort(peak_positions)
 
-    peak_position = numpy.sort(peak_position)
+    # get the peaks???
     peaks = numpy.zeros([n_peaks, 3], dtype="uint32")
 
     last_b = 1
-    for p in range(n_peaks):
-        b = peak_position[max_peak - n_peaks + p]
+    for i in range(n_peaks):
+        b = peak_positions[max_peaks - n_peaks + i]
         first_b = last_b + 1
-        if p == n_peaks:
-            last_b = spectrum_size
+        if i == n_peaks:
+            last_b = len(spectrum)
         else:
-            next_b = peak_position[max_peak - n_peaks + p]
-            rel_min = numpy.argmin(amps[b:next_b])
+            next_b = peak_positions[max_peaks - n_peaks + i]
+            rel_min = numpy.argmin(spectrum[b:next_b])
             last_b = b + rel_min - 1
 
-        peaks[p, 0] = first_b
-        peaks[p, 1] = b
-        peaks[p, 2] = last_b
+        peaks[i, 0] = first_b
+        peaks[i, 1] = b
+        peaks[i, 2] = last_b
     return peaks
