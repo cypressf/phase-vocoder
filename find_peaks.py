@@ -1,7 +1,7 @@
 import numpy
 
 
-def find_peaks4(spectrum, max_peaks, eps_peak):
+def find_peaks(spectrum, max_peaks, eps_peak):
 
     # find the peaks in the spectrum
     greater_than_previous = numpy.greater(spectrum[3:-1], spectrum[2:-2])
