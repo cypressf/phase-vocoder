@@ -26,7 +26,7 @@ nPeaks = 0;
 
 %searches for max-peaks
 for p = 1 : MAX_PEAK
-  [m, b] = max( peakAmp ); %value, position
+  [m, b] = max( peakAmp ); %
   if m <= ( EPS_PEAK * maxAmp )
     break;
   end;
@@ -48,7 +48,7 @@ for p = 1 : nPeaks
     last_b = SPECTRUM_SIZE;
   else
     next_b = peakPos(MAX_PEAK-nPeaks+p+1);
-    [dummy, rel_min] = min(Amp(b:next_b));
+    [dummy, rel_min] = min( Amp(b:next_b));
     last_b = b+rel_min-1;
   end;
   peaks(p,1) = first_b;
