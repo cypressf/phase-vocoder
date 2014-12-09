@@ -20,7 +20,7 @@ def find_peaks4(spectrum, max_peaks, eps_peak):
         peak_amplitudes[peak_position] = 0
     peak_positions = numpy.sort(peak_positions)
 
-    # get the peaks???
+    # get the valleys in between the peaks or something?
     peaks = numpy.zeros([len(peak_positions), 3], dtype="uint32")
 
     previous_peak_position = 1
@@ -33,7 +33,7 @@ def find_peaks4(spectrum, max_peaks, eps_peak):
             rel_min = numpy.argmin(spectrum[peak_position:next_peak_position])
             previous_peak_position = peak_position + rel_min - 1
 
-        peaks[i, 0] = first_peak_position
+        peaks[i, 0] = first_peak_position #TODO: understand this
         peaks[i, 1] = peak_position
-        peaks[i, 2] = previous_peak_position
+        peaks[i, 2] = previous_peak_position #TODO: understand this
     return peaks
