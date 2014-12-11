@@ -16,7 +16,7 @@ def find_peaks(spectrum_magnitude, max_peaks, eps_peak):
         m = peak_amplitudes[peak_position]
         if m <= (eps_peak * max_amp):
             break
-        peak_positions.append(peak_position + 2)
+        peak_positions.append(peak_position + 3)
         peak_amplitudes[peak_position] = 0
     peak_positions = numpy.sort(peak_positions)
 
